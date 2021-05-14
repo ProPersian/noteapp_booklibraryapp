@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="80dp"
+
+    tools:context=".UpdateActivity">
+
+    <EditText
+        android:id="@+id/update_titleInput"
+        style="@style/myTextStyle.Empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:hint="Book Title"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/update_authorInput"
+        style="@style/myTextStyle.Empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:hint="Book Author"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@id/update_titleInput"
+        app:layout_constraintTop_toBottomOf="@id/update_titleInput" />
+
+    <EditText
+        android:id="@+id/update_pagesInput"
+        style="@style/myTextStyle.Empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:hint="Number of Pages"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@id/update_titleInput"
+        app:layout_constraintTop_toBottomOf="@id/update_authorInput" />
+
+    <Button
+        android:id="@+id/update_Button"
+        style="@style/myButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Update"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_pagesInput" />
+
+    <Button
+        android:id="@+id/delete_Button"
+        style="@style/myButtonStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Delete"
+        android:textColor="@android:color/holo_red_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_Button" />
+</androidx.constraintlayout.widget.ConstraintLayout>
