@@ -17,6 +17,7 @@ public class Values {
     public static final String DATA_TITLE = "title";
     public static final String DATA_AUTHOR = "author";
     public static final String DATA_PAGES = "pages";
+    public static final String DATA_FAV = "favourite";
 
     public static final int DROP_TABLE = 999;
     public static final int DELETE_ALL = 998;

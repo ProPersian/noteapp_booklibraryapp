@@ -1,21 +1,10 @@
 package story.book.myapplication;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,6 +12,14 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -43,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     DataAdapter adapter;
     ArrayList<String> book_id, book_title, book_author, book_pages;
+    ArrayList<Integer> book_fav;
 
 
     ImageView imageView_noData;
@@ -57,57 +55,10 @@ public class MainActivity extends AppCompatActivity {
         initialization();
         storeDataInArrays();
 
-        adapter = new DataAdapter(MainActivity.this, book_id, book_title, book_author, book_pages);
+        adapter = new DataAdapter(MainActivity.this, book_id, book_title, book_author, book_pages, book_fav);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
-    }
-
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1) {
-            recreate();
-        }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.my_menu, menu);
-
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-
-        switch (id) {
-            case R.id.item_delete_all:
-
-                confirmDeleteDialog(Values.DELETE_ALL);
-                break;
-            case R.id.item_reset:
-                confirmDeleteDialog(Values.DROP_TABLE);
-                break;
-            case R.id.item_sort_id:
-
-                break;
-            case R.id.item_rtl:
-                changeLayoutDirection();
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-    @SuppressLint("WrongConstant")
-    private void changeLayoutDirection() {
-        ConstraintLayout layout = findViewById(R.id.main_activity);
-        layout.setLayoutDirection(View.TEXT_DIRECTION_RTL);
     }
 
     private void initialization() {
@@ -125,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
         book_title = new ArrayList<>();
         book_author = new ArrayList<>();
         book_pages = new ArrayList<>();
+        book_fav = new ArrayList<>();
 
     }
 
@@ -149,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
                 book_title.add(getStringFromCursor(cursor, Values.DATA_TITLE));
                 book_author.add(getStringFromCursor(cursor, Values.DATA_AUTHOR));
                 book_pages.add(getStringFromCursor(cursor, Values.DATA_PAGES));
+                book_fav.add(getIntegerFromCursor(cursor, Values.DATA_FAV));
 
             }
 
@@ -156,6 +109,14 @@ public class MainActivity extends AppCompatActivity {
             imageView_noData.setVisibility(View.GONE);
             textView_noData.setVisibility(View.GONE);
         }
+    }
+
+    private Integer getIntegerFromCursor(Cursor cursor, String dataFav) {
+        int i;
+        int j;
+        i = cursor.getColumnIndex(dataFav);
+        j = cursor.getInt(i);
+        return j;
     }
 
     private String getStringFromCursor(Cursor cursor, String columnName) {
@@ -203,5 +164,51 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
 
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 1) {
+            recreate();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.my_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.item_delete_all:
+
+                confirmDeleteDialog(Values.DELETE_ALL);
+                break;
+            case R.id.item_reset:
+                confirmDeleteDialog(Values.DROP_TABLE);
+                break;
+            case R.id.item_sort_id:
+
+                break;
+            case R.id.item_rtl:
+                changeLayoutDirection();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressLint("WrongConstant")
+    private void changeLayoutDirection() {
+        ConstraintLayout layout = findViewById(R.id.main_activity);
+        layout.setLayoutDirection(View.TEXT_DIRECTION_RTL);
     }
 }

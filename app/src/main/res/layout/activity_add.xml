@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="80dp"
+    android:layout_marginHorizontal="80dp"
     tools:context=".AddActivity">
 
     <EditText
@@ -12,21 +12,24 @@
         style="@style/myTextStyle.Empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
         android:hint="Book Title"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@id/add_authorInput"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <EditText
         android:id="@+id/add_authorInput"
         style="@style/myTextStyle.Empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:hint="Book Author"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@id/add_pagesInput"
         app:layout_constraintStart_toStartOf="@id/add_titleInput"
         app:layout_constraintTop_toBottomOf="@id/add_titleInput" />
 
@@ -35,10 +38,10 @@
         style="@style/myTextStyle.Empty"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="15dp"
         android:hint="Number of Pages"
         android:inputType="number"
-
+        app:layout_constraintBottom_toTopOf="@id/add_button"
         app:layout_constraintStart_toStartOf="@id/add_titleInput"
         app:layout_constraintTop_toBottomOf="@id/add_authorInput" />
 
@@ -47,9 +50,10 @@
         style="@style/myButtonStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:text="Add"
+        android:layout_marginTop="25dp"
+        android:text="Add Book"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/add_pagesInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,23 +35,33 @@
 
         <TextView
             android:id="@+id/item_title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginHorizontal="7dp"
             android:text="Title Text"
+            android:lines="1"
+            android:maxLength="50"
             android:textColor="#000"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toEndOf="@+id/item_id"
+            app:layout_constraintEnd_toStartOf="@id/item_pages"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toTopOf="@+id/item_id" />
 
         <TextView
             android:id="@+id/item_author"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:text="Author Text"
+            android:layout_marginHorizontal="7dp"
+            android:maxLength="150"
+            android:text="Author Text sala sal hi hi dfji fdj fdls slal enau exe se
+esj esl k jea j ja ej lfkja lifj طرح‌نما یا لورم ایپسوم به نوشتاری آزمایشی و بی‌معنی در صنعت چاپ، صفحه‌آرایی و طراحی گرافیک گفته می‌شود. طراح گرافیک از این نوشتار به‌عنوان عنصری از ترکیب‌بندی برای پُر کردن صفحه و ارائهٔ اولیهٔ شکل ظاهری و کلیِ طرح سفارش‌گرفته‌شده‌استفاده می‌کند، تا ازنظر گرافیکی نشانگر چگونگی نوع و اندازهٔ قلم و ظاهرِ متن باشد "
             app:layout_constraintStart_toStartOf="@+id/item_title"
+            app:layout_constraintEnd_toEndOf="@id/item_title"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintTop_toBottomOf="@+id/item_title" />
 
         <TextView
@@ -59,8 +69,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pages"
+            android:maxLength="4"
+            app:layout_constraintBottom_toTopOf="@id/item_like_toggle"
+            app:layout_constraintHorizontal_bias="0.95"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <ToggleButton
+            android:id="@+id/item_like_toggle"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/selector_thumb_up"
+            android:textOff=""
+            android:textOn=""
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_pages" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

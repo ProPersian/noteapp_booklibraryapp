@@ -29,7 +29,8 @@ public class DataBaseOpenHelper extends SQLiteOpenHelper {
                 Values.DATA_ID + "     INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                 Values.DATA_TITLE + "  TEXT,\n" +
                 Values.DATA_AUTHOR + " TEXT,\n" +
-                Values.DATA_PAGES + "  INTEGER\n" +
+                Values.DATA_PAGES + "  INTEGER,\n " +
+                Values.DATA_FAV + "  INTEGER " + " DEFAULT 0 " +
                 ");";
 
         db.execSQL(query);
@@ -58,10 +59,24 @@ public class DataBaseOpenHelper extends SQLiteOpenHelper {
         if (result == -1) {
             Toast.makeText(context, "Failed to Update", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(context, "Seccessfully Update", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, "Successfully Update", Toast.LENGTH_SHORT).show();
         }
 
 
+    }
+
+    public void updateFavourite(String id, Integer fav) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(Values.DATA_FAV, fav);
+
+        long result = db.update(Values.TABLE_NAME, cv, "id=?", new String[]{id});
+
+        if (result == -1) {
+            Toast.makeText(context, "Failed update Fav item", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(context, "Successfully Favourite Update", Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void addBook(String title, String author, int pages) {
